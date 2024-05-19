@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template, g
 
 
 def create_app(test_config=None):
@@ -28,5 +28,10 @@ def create_app(test_config=None):
     @app.route('/healthz')
     def health_check():
         return 'Hello, Waseem bhai!'
+    
+    # Homepage
+    @app.route('/home')
+    def home():
+        return render_template("base.html")
 
     return app

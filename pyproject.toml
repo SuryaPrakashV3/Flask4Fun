@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "flask4fun"
+version = "0.1.0"
+description = "A project for fun using Flask"
+authors = ["Surya Prakash V <surya99var@gmail.com>"]
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+Flask = "^3.0.3"
+
+[tool.poetry.group.dev.dependencies]
+build = "^1.2.1"
+virtualenv = "^20.26.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

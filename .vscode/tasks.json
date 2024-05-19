@@ -6,7 +6,7 @@
         {
             "label": "Run dev server",
             "type": "shell",
-            "command": "flask --app flaskr run --debug",
+            "command": "flask --app flask4fun run --debug",
             "group": {
                 "kind": "none",
                 "isDefault": true

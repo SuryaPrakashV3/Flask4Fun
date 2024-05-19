@@ -27,6 +27,6 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/healthz')
     def health_check():
-        return 'Hello, World!'
+        return 'Hello, Waseem bhai!'
 
     return app

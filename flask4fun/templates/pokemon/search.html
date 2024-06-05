@@ -1,0 +1,32 @@
+{% extends('base.html') %}
+{% block title %} {{ data.name }} {% endblock %}
+{% block content %}
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        {% for item in data.results %}
+
+        <div class="mdc-layout-grid__cell">
+            <div class="mdc-card">
+                <div class="mdc-card__content">
+                <div class="mdc-card__primary-action">
+                    <div class="mdc-typography--overline" style="margin-left: 5px;">{{item.name}}</div>
+                    <div class="mdc-card__media mdc-card__media--square">
+                        <div class="mdc-card__media-content"
+                            style="background: no-repeat url({{item.url | trim('/') | replace('https://pokeapi.co/api/v2/', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/')}}.png); background-size: cover;">
+                        </div>
+                    </div>
+                    <div class="mdc-card__ripple"></div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="mdc-top-app-bar mdc-top-app-bar--dense">
+    <div class="mdc-top-app-bar__row">
+        page
+    </div>
+</div>
+{% endblock %}

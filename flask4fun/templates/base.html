@@ -1,24 +1,69 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - Flask4Fun</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-  <h1>Flask4Fun</h1>
-  <ul>
-    <!-- {% if g.user %}
-      <li><span>{{ g.user['username'] }}</span>
-      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-    {% else %} -->
-      <li><a href="{{ url_for('health_check') }}">Register</a>
-      <li><a href="{{ url_for('health_check') }}">Log In</a>
-    <!-- {% endif %} -->
-  </ul>
-</nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
+
+<head>
+  <title>{% block title %}{% endblock %} - Flask4Fun</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script type="module">
+    import '@material/web/all.js';
+    import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <header class="mdc-top-app-bar mdc-top-app-bar--short" data-mdc-auto-init="MDCTopAppBar">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+        <span class="mdc-top-app-bar__title">Flask4Fun</span>
+      </section>
+      
+      {% block header %}
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+        <a href="{{ url_for('health_check') }}" class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
+          aria-label="Bookmark this page">login</a>
+      </section>
+      {% endblock %}
+    </div>
   </header>
   {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
+  <div class="flash">{{ message }}</div>
   {% endfor %}
-  {% block content %}{% endblock %}
-</section>
+  <main class="mdc-top-app-bar--short-fixed-adjust">
+    {% block content %}
+    <h1 class="md-typescale-display-medium">Flask4Fun by Surya Prakash</h1>
+    <form>
+      <p class="md-typescale-body-medium">Check out these controls in a form!</p>
+      <md-checkbox></md-checkbox>
+      <div>
+        <md-radio name="group"></md-radio>
+        <md-radio name="group"></md-radio>
+        <md-radio name="group"></md-radio>
+      </div>
+
+      <md-outlined-text-field label="Favorite color" value="Purple"></md-outlined-text-field>
+
+      <md-outlined-button type="reset">Reset</md-outlined-button>
+    </form>
+    <section class="content">
+      <header>
+      </header>
+    </section>
+    {% endblock %}
+  </main>
+  <script>
+    window.mdc.autoInit()
+  </script>
+</body>

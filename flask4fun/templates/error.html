@@ -1,0 +1,22 @@
+{% extends('base.html') %}
+{% block title %}{{ error.code }} | {{ error. name }} {% endblock %} - Flask4Fun</title>
+{% block content %}
+<div class="mdc-card">
+  <div class="mdc-card__primary-action">
+    {{error.code}} / {{error.name}}
+    <div class="mdc-card__media mdc-card__media--16-9">
+      <div class="mdc-card__media-content" style="background: no-repeat center url(https://http.cat/images/{{error.code}}.jpg);">
+      </div>
+    </div>
+    <div class="mdc-card__ripple"></div>
+  </div>
+  <div class="mdc-card__actions">
+    <div class="mdc-card__action-buttons">
+      <a href="{{ url_for('home') }}" class="mdc-button mdc-card__action mdc-card__action--button">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">GO HOME</span>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

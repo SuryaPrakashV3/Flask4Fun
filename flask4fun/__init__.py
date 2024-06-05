@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask, render_template, g
+from flask import Flask, request, render_template, g
+from flask4fun.modules.pokeapi import PokeApi
 
 
 def create_app(test_config=None):
@@ -27,11 +28,30 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/healthz')
     def health_check():
-        return 'Hello, Waseem bhai!'
+        return 'Hello world'
     
     # Homepage
     @app.route('/home')
     def home():
         return render_template("base.html")
+    
+    # pokemon
+    @app.route('/pokemon')
+    def pokemon():
+        api = PokeApi()
+        params = request.args
+        if params['limit'] is None:
+            params['limit'] = 20
+        if params['offset'] is None:
+            params['offset'] = 0
+        data = api.get_items(int(params['limit']), int(params['offset']))
+        # for item in data['results']:
+        #     item['sprite'] = item['url'].replace(api.baseUrl, 'https://pokeapi.co/api/v2/', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/')
+        return render_template("pokemon/search.html", data=data)
+    
+    @app.errorhandler(404)
+    def not_found(error):
+        app.logger.error(error)
+        return render_template('error.html',  error=error), error.code
 
     return app

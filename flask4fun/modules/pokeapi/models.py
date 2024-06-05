@@ -1,4 +1,4 @@
-class NamedAPIResourceList[T]:
+class NamedAPIResourceList:
     '''The total number of resources available from this API.'''
     count: int
     '''The URL for the next page in the list.'''
@@ -6,7 +6,7 @@ class NamedAPIResourceList[T]:
     '''The URL for the previous page in the list.'''
     previous: str	
     '''A list of named API resources.'''
-    results: list[T]
+    results: list
 
 
 class Pokemon:
